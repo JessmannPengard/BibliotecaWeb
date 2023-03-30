@@ -1,5 +1,6 @@
 <%@ page import="com.formacom.biblioteca.Models.Libro" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -14,6 +15,9 @@
     <h1>Libros</h1>
     <%
         List<Libro> libroList= (List<Libro>) request.getAttribute("libros");
+        if (libroList==null){
+            libroList=new ArrayList<>();
+        }
     %>
     <hr>
 

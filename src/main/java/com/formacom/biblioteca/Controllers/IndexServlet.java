@@ -11,10 +11,8 @@ import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "indexServlet", value = "/main")
 public class IndexServlet extends HttpServlet {
-    private String message;
 
     public void init() {
-        message = "Hello World!";
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -23,10 +21,19 @@ public class IndexServlet extends HttpServlet {
 
         try {
             request.setAttribute("libros",libros);
-            request.getRequestDispatcher("index.jsp").forward(request,response);
+            request.getRequestDispatcher("libros.jsp").forward(request,response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        String codigo=request.getParameter("codigo");
+        String titulo=request.getParameter("titulo");
+        String genero=request.getParameter("genero");
+        Biblioteca biblio = new Biblioteca();
+        biblio.addLibro(codigo,titulo,genero);
+        response.sendRedirect("main");
     }
 
     public void destroy() {

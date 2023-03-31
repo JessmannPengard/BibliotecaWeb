@@ -1,0 +1,35 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Biblioteca - Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Login</h1>
+    <hr>
+
+    <form method="post" class="col-6">
+        <div class="form-group">
+            <label for="nombre" class="form-label">Nombre de usuario</label>
+            <input type="text" name="nombre" id="nombre" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="dni" class="form-label">DNI</label>
+            <input type="text" name="dni" id="dni" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Login" class="btn btn-success">
+            <a href="register">Registro</a>
+        </div>
+        <c:if test="${msg!=null}">
+            <p>${msg}</p>
+        </c:if>
+    </form>
+</div>
+</body>
+</html>

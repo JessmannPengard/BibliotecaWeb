@@ -1,3 +1,4 @@
+<%@ page import="com.formacom.biblioteca.Models.Usuario" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
@@ -9,7 +10,9 @@
 <body>
 <div class="container">
     <h1>Libros - jstl</h1>
-    <hr>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#"><%=((Usuario)request.getAttribute("usuario")).getNombre()%></a>
+    </nav>
     <form method="post" class="col-6">
         <div class="form-group">
             <label for="codigo" class="form-label">Código</label>

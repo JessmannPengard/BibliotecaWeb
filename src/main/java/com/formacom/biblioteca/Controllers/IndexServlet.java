@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.formacom.biblioteca.Models.Biblioteca;
 import com.formacom.biblioteca.Models.Libro;
+import com.formacom.biblioteca.Models.Usuario;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -16,14 +17,21 @@ public class IndexServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Biblioteca biblioteca=new Biblioteca();
-        List<Libro> libros = biblioteca.getAllLibros();
+        HttpSession sesion=request.getSession(true);
+        if (sesion.getAttribute("usuario")!=null) {
 
-        try {
-            request.setAttribute("libros",libros);
-            request.getRequestDispatcher("libros.jsp").forward(request,response);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
+            Biblioteca biblioteca = new Biblioteca();
+            List<Libro> libros = biblioteca.getAllLibros();
+            Usuario usuario= (Usuario) sesion.getAttribute("usuario");
+            try {
+                request.setAttribute("usuario", usuario);
+                request.setAttribute("libros", libros);
+                request.getRequestDispatcher("libros.jsp").forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            }
+        }else{
+            response.sendRedirect("login");
         }
     }
 
